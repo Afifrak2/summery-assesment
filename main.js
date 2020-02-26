@@ -59,7 +59,12 @@ function reduce(array, f, acc) {
 //wordLengths("hello its me") // [5,3,2]
 
 function wordLengths(str) {
-    // TODO: your code here 
+    var arr=str.split(' ');
+    var array=[];
+    each(arr, function(element){
+      array.push(element.length)
+    })
+    return array;
 }
 
 //=============================================================================
@@ -72,7 +77,14 @@ function wordLengths(str) {
 // countOccurrences("hello, world!", "l"); // 3
 
 function countOccurrences(string, character) {
-    // your code is here
+    var array=string.split('');
+    var occ=0;
+    each (array, function(element){
+      if(element === character) {
+        occ+=1;
+      }
+    })
+    return occ;
 }
 
 //=============================================================================
@@ -84,7 +96,10 @@ function countOccurrences(string, character) {
 // wordsLongerThanThree("Hello Mad World") //["Hello", "World"]
 
 function wordsLongerThanThree(str) {
-    // TODO: your code here 
+    var tab=str.split(' ');
+    return filter(tab, function(word){
+      return word.length>3
+    })
 }
 
 //=============================================================================
@@ -99,7 +114,13 @@ function wordsLongerThanThree(str) {
 //repeatString('dog', 3); // => 'dog' + 'dog' + 'dog' => 'dogdogdog'
 
 function repeatString(str, count) { 
- // TODO: your code here 
+  var str='';
+ if (count === 0) {
+   return str='';
+ } else {
+ str=str+repeatString(str, count-1);
+ }
+ return str;
 } 
  
 
@@ -128,7 +149,34 @@ function repeatString(str, count) {
 // pizza.eatSlice();
 // pizza.eatSlice();
 
-// Write your code here .....
+function makePizza(crust, size, numberOfSlice) {
+  var n=numberOfSlice;
+  var ingredients=[];
+ return {
+    addIngredients:function(ingredient) {
+      ingredients.push(ingredient);
+    },
+    displayIngredients:function() {
+      var str='';
+      for (var i=0; i<ingredients.length; i++) {
+        str=str+ingredients[i]+',';
+      }
+      return "the ingredients are : "+ str.slice(0, str.length-1);
+    },
+    bakePizza:function() {
+      function call() {return "your "+crust+' '+size+' '+n+' slice pizza is done.';}
+      return setInterval(call(),2000);
+    },
+    eatSlice:function() {
+      if (n>0) {
+        n-=1;
+        return alert("you can enjoy your pizza");
+      }
+      return "you are done";
+    }
+
+ }
+}
 
 //=============================================================================
 /*                                  Q6                                      */
@@ -154,8 +202,30 @@ d- Decrement the number of "unread" books
 
 // Now, to make sure that you are actually reading, make a comment below this and type: Yes I am
 
-// Write your code here .....
-
+function ReadingList() {
+  var obj={};
+  obj.read=read;
+  obj.unRead=unRead;
+  obj.toRead=toRead;
+  obj.currentRead=currentRead;
+  obj.readBooks=[];
+  obj.AddBook=AddBook;
+  obj.finishCurrentBook=finishCurrentBook
+  
+  return obj;
+}
+var AddBook=function(bookName) {
+  this.toRead.push(bookName);
+  this.unRead+=1
+  return this;
+};
+var finishCurrentBook=function() {
+  
+  this.redBooks.push(this.currentRead);
+  this.read+=1;
+  this.toRead.unshift(this.currentRead);
+  return this;
+};
 //=============================================================================
 /*                                  Q7                                       */
 //=============================================================================
@@ -174,7 +244,34 @@ d- Decrement the number of "unread" books
 //  safe('silver-bar','big') => "Can't fit"
 //  safe('money','small') => "watch gold-bar money"
 
-// Write your code here .....
+function makeSafe(initial) {
+  var valeur=initial;
+
+  return{
+    addItem:function(item, itemSize) {
+      var obj={
+        small:1,
+        medium:2,
+        big:3
+      }
+         for (var key in obj) {
+            if (itemSize === key){
+              if (valeur - obj.key< 0) {
+                return "can't fit";
+             }
+              else if(valeur- obj.key >0) {
+               array.push(item);
+              }else{
+                 for (var i=0; i<array.length; i++){
+                    str=str+' '+array[i];
+                  }
+            return str;
+          }
+         }
+        }
+    }
+  }
+}
 
 //=============================================================================
 /*                                  Q8                                       */
